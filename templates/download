@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <body>
+        <div id="contents">
+            <h1>ファイルアップロードのテスト</h1>
+        </div>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button>upload</button>
+        </form>
+    </body>
+{% endblock %}

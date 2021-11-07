@@ -1,0 +1,33 @@
+{% extends 'base-er.html' %}
+
+{% block body %}
+<h2 class="m-5" style="text-align: center;">詳細</h2>
+<div class="card w-50 mb-3" style="margin: auto;">
+    <div class="card-body">
+
+        <h1>{{ title }}</h1>
+        <p>{{ message }}</p>
+        <form action="/er_room_enter/{{ post.id }}" method="POST" enctype="multipart/form-data">
+            <select name="sel">
+                <option value="null" disabled selected>選択して下さい</option>
+                <option value="鶏">鶏肉</option>
+                <option value="豚">豚肉</option>
+                <option value="牛">牛肉</option>
+                <option value="羊">羊肉</option>
+            </select>
+
+            <input type="text" class="form-control" name="res" aria-describedby="title-help">   
+            <div>
+                <input type="submit" value="送信">
+            </div>
+        </form>
+
+        <h2 class="card-title">{{ post.room_name}} </h2>
+        <div class="pt-2">
+            <a class="btn btn-outline-success" href="/erhome" role="button">Return</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

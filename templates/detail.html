@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2 class="m-5" style="text-align: center;">詳細</h2>
+<div class="card w-50 mb-3" style="margin: auto;">
+    <div class="card-body">
+        <h2 class="card-title">{{ post.oil_id}} </h2>
+            <h2 class="ml-3" tyle="font-size: 0.5em;">開封日：{{ post.user_open.date() }}</span></h2>
+            <h2 tyle="font-size: 0.5em;">使用期限：{{ post.user_due.date() }}</span></h2>
+            <h2 tyle="font-size: 0.5em;">残量：{{ post.user_volume_ml }}ml</span></h2>
+        <p>{{ post.detail }}</p>
+        <div class="pt-2">
+            <a class="btn btn-outline-success" href="/" role="button">Return</a>
+            <a class="btn btn-success" href="/update/{{ post.user_id }}" role="button">Update</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

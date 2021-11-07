@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3>食べた果物記録</h3>
+こんにちは。こちょすさん。
+ 
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>予定</th>
+            <th>詳細</th>
+            <th>日付</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in date_fruit_list %}
+            <tr>
+                <td>{{ list[0] }}</td>
+                <td>{{ list[1] }}</td>
+                <td>{{ list[2] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

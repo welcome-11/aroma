@@ -1,0 +1,20 @@
+{% extends 'base-er.html' %}
+
+{% block body %}
+<h2 class="m-5">新規作成</h2>
+<form class="m-5" action="/er_create_room_process" method='POST'>
+    <div class="form-group pb-3">
+        <label for="room_name">Room name : </label>
+        <input type="text" class="form-control" name="room_name" aria-describedby="title-help">
+        <small id="title-help" class="form-text text-muted">ルーム名前を入力してください。</small>
+    </div>
+    <div class="form-group pb-3">
+        <label for="room_pass">room pass : </label>
+        <input type="text" class="form-control" name="room_pass">
+    </div>
+
+    <a class="btn btn-outline-primary" href="/erhome" role="button">Return</a>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+{% endblock %}

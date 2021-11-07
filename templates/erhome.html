@@ -1,0 +1,22 @@
+{% extends 'base-er.html' %}
+
+{% block body %}
+    <body>
+        <div id="contents">
+            <a class="btn btn-info btn-lg m-5" href="/er_create_room" role="button">ルーム作成</a>
+            <a class="btn btn-info btn-lg m-5" href="/ercreate" role="button">返信作成</a>
+            <a class="btn btn-info btn-lg m-5" href="/votelist" role="button">投票</a>
+            <a class="btn btn-info btn-lg m-5" href="/er_thema_create" role="button">テーマ作成</a>
+        
+        {% for post in posts %}
+        <div class="card w-50 mb-3" style="margin: auto;">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.room_name }}</h2>
+                <a class="btn btn-success btn-sm" href="/er_room_enter/{{ post.id }}" role="button">Enter</a>
+                <a class="btn btn-danger btn-sm" href="/er_delete_room/{{ post.id }}" role="button">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+
+{% endblock %}

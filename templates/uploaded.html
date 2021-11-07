@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <body>
+        <div id="contents">
+            <h2>ファイルのアップロードに成功！</h2>
+        </div>
+        <table>
+            <tr>
+                <th>title</th>
+                <th>detail</th>
+                <th>due</th>
+            </tr>
+            {% for d in data %}
+            <tr>
+                <td>{{d[0]}}</td>
+                <td>{{d[1]}}</td>
+                <td>{{d[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>  
+        <ul>
+            <li><a href="/">アップロード画面に戻る</a></li>
+            
+        </ul>
+    </body>
+    {% endblock %}

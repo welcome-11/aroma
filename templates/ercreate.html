@@ -1,0 +1,15 @@
+{% extends 'base-er.html' %}
+
+{% block body %}
+<h2 class="m-5">”連絡内容：＊＊＊＊＊＊＊＊＊＊”</h2>
+<form class="m-5" action="/" method='POST'>
+    <div class="form-group pb-3">
+        <label for="res">回答: </label>
+        <input type="text" class="form-control" name="res" aria-describedby="title-help">
+        <small id="title-help" class="form-text text-muted">返事を入力してください。</small>
+    </div>
+    <a class="btn btn-outline-primary" href="/" role="button">Return</a>
+    <button type="submit" href="/uploaded" class="btn btn-primary">Create</button>
+</form>
+
+{% endblock %}

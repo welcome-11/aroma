@@ -1,0 +1,15 @@
+{% extends 'base-er.html' %}
+
+{% block body %}
+<h2 class="m-5">新規追加</h2>
+<form class="m-5" action="/er_thema_create_process" method='POST'>
+    <div class="form-group pb-3">
+        <label for="thenma">お題 : </label>
+        <input type="text" class="form-control" name="thema" aria-describedby="title-help">
+        <small id="title-help" class="form-text text-muted">テーマを入力してください。</small>
+    </div>
+    <a class="btn btn-outline-primary" href="/erhome" role="button">Return</a>
+    <button type="submit" class="btn btn-primary" >Create</button>
+</form>
+
+{% endblock %}

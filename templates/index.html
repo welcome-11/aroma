@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    
+    {% for post in posts %}
+    <div class="card w-50 mb-3" style="margin: auto;">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.user_id }}</h2>
+            <h2 class="card-title">{{ post.user_title }}</h2>
+            <p>期限：{{ post.user_due.date() }}</p>
+            <a class="btn btn-secondary btn-sm" href="/detail/{{ post.user_id }}" role="button">Detail</a>
+            <a class="btn btn-success btn-sm" href="/update/{{ post.user_id }}" role="button">Update</a>
+            <a class="btn btn-danger btn-sm" href="/delete/{{ post.user_id }}" role="button">Delete</a>
+            {% if post.user_due.date() < today %}
+            <div class="alert alert-warning" role="alert">
+                使用期限切れです。
+            </div>
+            {% endif %}
+            {% if post.user_volume_ml < post.user_volume_ml   %}
+            <div class="alert alert-warning" role="alert">
+                残量がわずかです。購入しますか？
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
