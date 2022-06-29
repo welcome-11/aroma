@@ -8,6 +8,8 @@ import pandas as pd
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from flask_sqlalchemy.model import Model
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///aroma.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -21,6 +23,7 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):
     return User1.query.get(int(user_id))
+
 
 class OilData(db.Model):
     __tablename__ = 'oil'
@@ -90,24 +93,14 @@ def index():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == "POST":
-        print("ifぶん")
         username = request.form.get('username')
         password = request.form.get('password')
-        
-        # Userテーブルからusernameに一致するユーザを取得
-        user = User1.query.filter_by(username=username).first()
-        print(user)
-        if user == None:
         # Userのインスタンスを作成
-            user1 = User1(username=username, password=generate_password_hash(password, method='sha256'))
-            db.session.add(user1)
-            db.session.commit()
-            return redirect('/login')
-        else:
-            return render_template('signup_already.html')
-        
+        user1 = User1(username=username, password=generate_password_hash(password, method='sha256'))
+        db.session.add(user1)
+        db.session.commit()
+        return redirect('/login')
     else:
-        print("elseぶん")
         return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -120,16 +113,14 @@ def login():
         if check_password_hash(user.password, password):
             login_user(user)
             return redirect('/')
-        else:
-            return render_template('login_error.html')
-
     else:
         return render_template('login.html')
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
-    return redirect('/')
+    return redirect('/login')
 
 @app.route('/create')
 def create():
@@ -143,6 +134,12 @@ def read(id):
     post = UserData.query.get(id)
     print(post)
     return render_template('detail.html', post=post)
+
+@app.route('/detail_test/<int:id>')
+def read_test(id):
+    ergames = ergamethema.query.get(id)
+    print(ergames)
+    return render_template('detail_test.html', ergames=ergames)
 
 @app.route('/delete/<int:id>')
 def delete(id):
